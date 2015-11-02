@@ -19,6 +19,9 @@ var render = function () {
      .attr('cy', state.circle.position.y)
      .attr('r', state.circle.radius)
      .attr('fill', state.circle.color)
+     .on('click', function () {
+       store.dispatch(actions.updateCircleRadius(Math.random() * 40))
+     })
 
   svg.append('rect')
      .attr('x', state.rectangle.position.x)
@@ -26,18 +29,24 @@ var render = function () {
      .attr('width', state.rectangle.width)
      .attr('height', state.rectangle.height)
      .attr('fill', state.rectangle.color)
+     .on('click', function () {
+       store.dispatch(actions.updateRectangleWidth(Math.random() * 60))
+       store.dispatch(actions.updateRectangleHeight(Math.random() * 60))
+     })
 }
+
 // initial render
 render()
+
+// whenever the application state changes, call render again
 store.subscribe(render)
 
-var colors = ['red','orange','yellow','green','blue','rebeccapurple']
+// dispatch some random actions to our store each second
+// the state will update as a result and re-render the page
+var colors = ['red','orange','green','blue','rebeccapurple']
 setInterval(function() {
-  store.dispatch(actions.updateCircleRadius(Math.random() * 40))
   store.dispatch(actions.updateCircleColor(colors[Math.floor(Math.random() * colors.length)]))
-  store.dispatch(actions.updateCirclePosition(Math.random() * 100, Math.random() * 100))
-  store.dispatch(actions.updateRectangleWidth(Math.random() * 60))
-  store.dispatch(actions.updateRectangleHeight(Math.random() * 60))
+  //store.dispatch(actions.updateCirclePosition(Math.random() * 100, Math.random() * 100))
   store.dispatch(actions.updateRectangleColor(colors[Math.floor(Math.random() * colors.length)]))
-  store.dispatch(actions.updateRectanglePosition(Math.random() * 100 + 100, Math.random() * 100 + 100))
+  //store.dispatch(actions.updateRectanglePosition(Math.random() * 100 + 100, Math.random() * 100 + 100))
 }, 1000)
