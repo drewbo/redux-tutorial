@@ -5,7 +5,7 @@ module.exports = {
       payload: text
     }
   },
-  toggleButtonActiveness: function (color) {
+  toggleButtonActiveness: function () {
     return {
       type: 'TOGGLE_BUTTON_ACTIVENESS'
     }
