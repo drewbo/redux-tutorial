@@ -3,23 +3,8 @@ var _ = require('lodash')
 
 // provide initial application state
 var initialState = {
-  circle: {
-    radius: 25,
-    color: 'blue',
-    position: {
-      x: 40,
-      y: 50
-    }
-  },
-  rectangle: {
-    width: 40,
-    height: 70,
-    color: 'red',
-    position: {
-      x: 100,
-      y: 30
-    }
-  }
+  buttonText: 'Hi! I\'m a button',
+  active: false
 }
 
 // create a reducer which takes an action and the previous application state as
@@ -29,27 +14,13 @@ var reducer = function (state, action) {
   // and using this lodash function to create a copy on the first line
   var newState = _.assign({}, state)
   switch (action.type) {
-    case 'UPDATE_CIRCLE_RADIUS':
-      newState.circle.radius = action.payload
-      break
-    case 'UPDATE_CIRCLE_COLOR':
-      newState.circle.color = action.payload
-      break
-    case 'UPDATE_CIRCLE_POSITION':
-      newState.circle.position = action.payload
-      break
-    case 'UPDATE_RECTANGLE_WIDTH':
-      newState.rectangle.width = action.payload
-      break
-    case 'UPDATE_RECTANGLE_HEIGHT':
-      newState.rectangle.height= action.payload
-      break
-    case 'UPDATE_RECTANGLE_COLOR':
-      newState.rectangle.color = action.payload
-      break
-    case 'UPDATE_RECTANGLE_POSITION':
-      newState.rectangle.position = action.payload
-      break
+    case 'UPDATE_BUTTON_TEXT':
+      newState.buttonText = action.payload
+      break;
+    case 'TOGGLE_BUTTON_ACTIVENESS':
+      // if it was true, make it false and vice versa
+      newState.active = (newState.active) ? false : true
+      break;
     default:
       console.warn('Possible errant action type: ' + action.type)
       break
