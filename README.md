@@ -2,7 +2,8 @@
 
 Example project for getting one's feet wet with [Redux](http://rackt.org/redux/index.html).
 
-Uses no React (gasp!) for simplicity.
+This branch extends `master` by using [React](http://redux.js.org/docs/basics/UsageWithReact.html)
+in combination with Redux.
 
 ## Project Seed
 
